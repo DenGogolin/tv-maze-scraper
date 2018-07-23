@@ -10,8 +10,8 @@
   },
   "scraper": {
     "baseApiUrl": "http://api.tvmaze.com",
-    "showApiRoute": "/shows",
-    "castApiRoute": "/cast",
+    "showApiRoute": "shows",
+    "castApiRoute": "cast",
     "coolDownTime": 20000,
     "attemptNumber": 5,
     "requestsPerTime": 50,

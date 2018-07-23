@@ -4,6 +4,7 @@ import { IShow, ICast } from "../database/model";
 import { getAsync, coolDown } from "../utils/promisified";
 import { IScraperConfig } from "../config";
 import * as _ from "lodash";
+import { resolve } from "url";
 
 export class Scraper implements IScraper {
   constructor(private repo: IRepository, private config: IScraperConfig) {}
@@ -52,10 +53,10 @@ export class Scraper implements IScraper {
   }
 
   private getCastURL(id: number) {
-    return `${this.showURL}/${id}${this.config.castApiRoute}`;
+    return resolve(`${this.showURL}/`, `${id}/${this.config.castApiRoute}`);
   }
   private get showURL(): string {
-    return `${this.config.baseApiUrl}${this.config.showApiRoute}`;
+    return resolve(this.config.baseApiUrl, this.config.showApiRoute);
   }
 
   private async getShowCollection() {
