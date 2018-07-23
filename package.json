@@ -1,0 +1,45 @@
+{
+  "name": "tv-maze-scraper",
+  "version": "1.0.0",
+  "description": "epam's test task",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "npm run lint && npm run build && npm run serve",
+    "serve": "node dist/index.js",
+    "watch": "tsc -w",
+    "db-serve": "mongod",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenGogolin/tv-maze-scraper.git"
+  },
+  "author": "Denis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DenGogolin/tv-maze-scraper/issues"
+  },
+  "homepage": "https://github.com/DenGogolin/tv-maze-scraper#readme",
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/lodash": "^4.14.112",
+    "@types/mongodb": "^3.1.2",
+    "@types/mongoose": "^5.2.1",
+    "@types/nconf": "0.0.37",
+    "@types/node": "^10.5.2",
+    "@types/winston": "^2.3.9",
+    "nodemon": "^1.18.3",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.4",
+    "nconf": "^0.10.0",
+    "winston": "^3.0.0"
+  }
+}

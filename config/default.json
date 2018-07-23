@@ -1,0 +1,26 @@
+{
+  "database": {
+    "connectionString": "mongodb://localhost:27017/local",
+    "pathToJson": "./data.json",
+    "baseProject": {
+      "_id": 0,
+      "__v": 0,
+      "cast._id": 0
+    }
+  },
+  "scraper": {
+    "baseApiUrl": "http://api.tvmaze.com",
+    "showApiRoute": "/shows",
+    "castApiRoute": "/cast",
+    "coolDownTime": 20000,
+    "attemptNumber": 5,
+    "requestsPerTime": 50,
+    "apiErrorCode": 429
+  },
+  "logger": {
+    "pathToFile": "../.."
+  },
+  "server": {
+    "port": 8000
+  }
+}
