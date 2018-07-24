@@ -25,3 +25,10 @@ export interface IScraperConfig {
 export interface ILoggerConfig {
   pathToFile: string;
 }
+
+export interface IConfig {
+  dbSettings: IDBConfig;
+  serverSettings: IServerConfig;
+  scraperSettings: IScraperConfig;
+  loggerSettings: ILoggerConfig;
+}

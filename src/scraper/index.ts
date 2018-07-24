@@ -6,6 +6,8 @@ import { IScraperConfig } from "../config";
 import * as _ from "lodash";
 import { resolve } from "url";
 
+export * from "./interfaces";
+
 export class Scraper implements IScraper {
   constructor(private repo: IRepository, private config: IScraperConfig) {}
 
@@ -27,7 +29,7 @@ export class Scraper implements IScraper {
           .map(x => this.addCastsToShow(x))
           .value());
       if (_.some(result, false)) {
-        console.error(
+        console.log(
           `Scraper exceeded API call limitation. Cooldown is required.`
         );
         await coolDown(this.config.coolDownTime);
@@ -41,8 +43,7 @@ export class Scraper implements IScraper {
   private async addCastsToShow(item: IShow): Promise<boolean> {
     try {
       const casts = JSON.parse(await getAsync(this.getCastURL(item.id)));
-      await this.repo.addCastsToShow(item, _
-        .chain(casts)
+      await this.repo.addCastsToShow(item, _.chain(casts)
         .map(x => _.pick(x.person, ["id", "name", "birthday"]))
         .orderBy(["birthday"], ["desc"])
         .value() as ICast[]);

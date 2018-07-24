@@ -1,18 +1,16 @@
-import { IRepository } from "./database/interfaces";
-import { getDBConfig } from "./config";
-import { Repository } from "./database";
-import { Scraper } from "./scraper";
-import { getScraperConfig } from "./config/scraper";
-import { IScraper } from "./scraper/interfaces";
+import { IRepository, Repository } from "./database";
+import { IScraper, Scraper } from "./scraper";
 import { runServer } from "./server";
+import { Config, IConfig } from "./config";
 
-const _repository = new Repository(getDBConfig());
-const _scraper = new Scraper(_repository, getScraperConfig());
-
-startAsync(_repository, _scraper);
-
-async function startAsync(repo: IRepository, scraper: IScraper) {
+async function startAsync(repo: IRepository, scraper: IScraper, config: IConfig) {
   await repo.initDB();
-  runServer(repo);
+  runServer(repo, config.serverSettings);
   scraper.getDataAsync();
 }
+
+const _config = new Config();
+const _repository = new Repository(_config.dbSettings);
+const _scraper = new Scraper(_repository, _config.scraperSettings);
+
+startAsync(_repository, _scraper, _config);

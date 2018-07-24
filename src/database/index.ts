@@ -3,6 +3,8 @@ import { IDBConfig } from "../config";
 import { IShow, showModel, ICast } from "./model";
 import { IRepository } from "./interfaces";
 
+export * from "./interfaces";
+
 export interface IDatabase {
   showModel: Mongoose.Model<IShow>;
 }
