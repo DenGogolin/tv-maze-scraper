@@ -44,7 +44,8 @@ export class Scraper implements IScraper {
     try {
       const casts = JSON.parse(await getAsync(this.getCastURL(item.id)));
       await this.repo.addCastsToShow(item, _.chain(casts)
-        .map(x => _.pick(x.person, ["id", "name", "birthday"]))
+        .map(x => x.person)
+        .map(({ id, name, birthday }) => ({ id, name, birthday }))
         .orderBy(["birthday"], ["desc"])
         .value() as ICast[]);
     } catch (error) {
@@ -61,9 +62,7 @@ export class Scraper implements IScraper {
   }
 
   private async getShowCollection() {
-    return _.map(JSON.parse(await getAsync(this.showURL)), x => ({
-      id: x.id,
-      name: x.name
-    })) as IShow[];
+    return _.chain(JSON.parse(await getAsync(this.showURL)) as IShow[])
+      .map(({ id, name }) => ({ id, name })).value();
   }
 }
