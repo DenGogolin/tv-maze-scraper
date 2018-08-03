@@ -50,7 +50,7 @@ export class Repository implements IRepository {
   public async initDB() {
     (Mongoose as any).Promise = Promise;
     try {
-      await Mongoose.connect(this.conStr);
+      await Mongoose.connect(this.conStr, { useNewUrlParser: true });
     } catch (error) {
       console.error(`Unable to connect to database: ${this.conStr}`);
       throw new Error(error);
